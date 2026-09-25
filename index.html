@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>João Marcelo Nasser · Candidatura DVP · UNIFEI Júnior</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul:#1A4FA0; --azul-escuro:#0D2F6A; --azul-claro:#2E6FD8; --azul-pale:#EAF0FB;
+    --vermelho:#D42027; --vermelho-escuro:#A5151B; --vermelho-pale:#FBE9EA;
+    --cinza-bg:#F2F4F8; --cinza-card:#FFFFFF; --cinza-borda:#DDE3EE;
+    --cinza-texto:#4A5568; --cinza-sub:#8A96A8; --texto-escuro:#1A2336;
+    --verde:#1a7a4a; --verde-pale:#eaf3de; --amarelo:#B07A00; --amarelo-pale:#FFF8E1;
+    --sombra:0 2px 12px rgba(26,79,160,.08); --sombra-hover:0 8px 28px rgba(26,79,160,.15);
+    --radius:12px; --radius-sm:8px;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-padding-top:env(safe-area-inset-top,0px); }
+  body { font-family:'Barlow',sans-serif; background:var(--cinza-bg); color:var(--texto-escuro); }
+  header { background:linear-gradient(135deg,var(--azul-escuro) 0%,var(--azul) 60%,#1E5BBF 100%);
+    padding:28px 40px calc(24px + env(safe-area-inset-top,0px)); position:relative; overflow:hidden; text-align:center; }
+  header::before { content:''; position:absolute; top:-40px; right:-40px; width:220px; height:220px; background:rgba(255,255,255,.05); border-radius:50%; }
+  header::after { content:''; position:absolute; bottom:-70px; left:35%; width:300px; height:300px; background:rgba(212,32,39,.13); border-radius:50%; }
+  header h1 { position:relative; z-index:1; font-family:'Barlow Condensed',sans-serif; font-size:1.7rem; font-weight:800; color:#fff; letter-spacing:.03em; }
+  header p.role { position:relative; z-index:1; font-size:.85rem; color:rgba(255,255,255,.75); margin-top:4px; text-transform:uppercase; letter-spacing:.05em; }
+  header .concept { position:relative; z-index:1; margin-top:16px; display:inline-block; border:1px solid rgba(255,255,255,.35); border-radius:20px; padding:6px 20px; font-family:'Barlow Condensed',sans-serif; font-size:.85rem; font-weight:700; letter-spacing:.25em; color:#fff; text-transform:uppercase; }
+  nav.tabs { background:#fff; border-bottom:1px solid var(--cinza-borda); display:flex; justify-content:center; gap:4px; position:sticky; top:0; z-index:50; box-shadow:0 2px 8px rgba(26,79,160,.05); overflow-x:auto; }
+  .tab-btn { background:none; border:none; font-family:'Barlow',sans-serif; font-size:.8rem; font-weight:700; color:var(--cinza-sub); padding:15px 18px 12px; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; letter-spacing:.02em; }
+  .tab-btn.active { color:var(--azul); border-bottom-color:var(--vermelho); }
+  main { padding:28px 20px 48px; max-width:1000px; margin:0 auto; }
+  .page { display:none; } .page.active { display:block; }
+  .section-label { font-family:'Barlow Condensed',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--azul); margin:26px 0 12px; display:flex; align-items:center; gap:8px; }
+  .section-label:first-child { margin-top:0; }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--cinza-borda); }
+  .lead { font-size:.92rem; color:var(--cinza-texto); line-height:1.55; margin-bottom:18px; }
+  .card { background:#fff; border-radius:var(--radius); padding:20px 22px; box-shadow:var(--sombra); margin-bottom:16px; }
+  .card h3 { font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; text-transform:uppercase; letter-spacing:.02em; color:var(--texto-escuro); margin-bottom:6px; }
+  .card p { font-size:.85rem; color:var(--cinza-texto); line-height:1.55; }
+  /* timeline */
+  .timeline { position:relative; padding-left:26px; }
+  .timeline::before { content:''; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--cinza-borda); }
+  .t-item { position:relative; margin-bottom:22px; }
+  .t-item::before { content:''; position:absolute; left:-26px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--azul); border:3px solid #fff; box-shadow:0 0 0 2px var(--azul); }
+  .t-item.now::before { background:var(--vermelho); box-shadow:0 0 0 2px var(--vermelho); }
+  .t-item h4 { font-family:'Barlow Condensed',sans-serif; font-size:1.05rem; font-weight:700; color:var(--azul); }
+  .t-item.now h4 { color:var(--vermelho); }
+  .t-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .t-tag { background:var(--azul-pale); color:var(--azul); font-size:.72rem; font-weight:600; padding:4px 10px; border-radius:12px; }
+  .t-item.now .t-tag { background:var(--vermelho-pale); color:var(--vermelho-escuro); }
+  /* pills grid */
+  .pill-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .pill-box { border-radius:var(--radius-sm); padding:14px 16px; }
+  .pill-box.forte { background:var(--verde-pale); } .pill-box.dev { background:var(--amarelo-pale); }
+  .pill-box .tt { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
+  .pill-box.forte .tt { color:var(--verde); } .pill-box.dev .tt { color:var(--amarelo); }
+  .pill-box ul { list-style:none; }
+  .pill-box li { font-size:.82rem; color:var(--texto-escuro); padding:4px 0; }
+  /* cycle diagram */
+  .cycle { display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; justify-content:center; margin:16px 0; }
+  .cyc-step { flex:1; min-width:140px; background:#fff; border-radius:var(--radius); padding:16px; text-align:center; box-shadow:var(--sombra); border-top:4px solid var(--azul); }
+  .cyc-step:nth-child(3) { border-top-color:var(--vermelho); }
+  .cyc-step .k { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.05rem; color:var(--azul); }
+  .cyc-step:nth-child(3) .k { color:var(--vermelho); }
+  .cyc-step .d { font-size:.75rem; color:var(--cinza-sub); margin-top:3px; }
+  .cyc-arrow { align-self:center; color:var(--cinza-sub); font-size:1.2rem; }
+  .flow { display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:.78rem; font-weight:600; color:var(--azul); margin:10px 0 4px; }
+  .flow span.step { background:var(--azul-pale); padding:5px 10px; border-radius:8px; }
+  .flow span.arrow { color:var(--cinza-sub); }
+  /* okr card */
+  .okr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:10px; }
+  .okr-cell { background:var(--azul-pale); border-radius:var(--radius-sm); padding:10px 12px; font-size:.75rem; color:var(--azul-escuro); }
+  .okr-cell b { display:block; font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; color:var(--azul); margin-bottom:3px; }
+  .accordion { border:1px solid var(--cinza-borda); border-radius:var(--radius-sm); margin-bottom:10px; overflow:hidden; }
+  .acc-head { background:#fafbfe; padding:12px 16px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.9rem; color:var(--texto-escuro); cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+  .acc-head::after { content:'+'; color:var(--azul); font-size:1.1rem; }
+  .accordion.open .acc-head::after { content:'–'; }
+  .acc-body { max-height:0; overflow:hidden; padding:0 16px; transition:max-height .25s ease, padding .25s ease; }
+  .accordion.open .acc-body { max-height:600px; padding:4px 16px 16px; }
+  .acc-body p { font-size:.83rem; color:var(--cinza-texto); line-height:1.55; margin-bottom:8px; }
+  .indicator-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+  .ind-tag { background:var(--vermelho-pale); color:var(--vermelho-escuro); font-size:.7rem; font-weight:600; padding:4px 9px; border-radius:10px; }
+  .cal-wrap { overflow-x:auto; background:#fff; border-radius:var(--radius); box-shadow:var(--sombra); margin-bottom:16px; }
+  table.cal { width:100%; border-collapse:collapse; font-size:.78rem; min-width:560px; }
+  table.cal th { background:var(--azul); color:#fff; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.03em; font-size:.7rem; padding:10px 12px; text-align:left; }
+  table.cal td { padding:9px 12px; border-bottom:1px solid var(--cinza-borda); color:var(--texto-escuro); }
+  table.cal tr:last-child td { border-bottom:none; }
+  table.cal tr:nth-child(even) td { background:#fafbfe; }
+  table.cal td.resp { color:var(--azul); font-weight:600; white-space:nowrap; }
+  table.cal tr.recesso td, table.cal tr.fecho td { color:var(--cinza-sub); font-style:italic; }
+  .highlight-box { background:var(--vermelho-pale); border-left:4px solid var(--vermelho); border-radius:var(--radius-sm); padding:16px 18px; margin-top:14px; }
+  .highlight-box .hb-tag { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--vermelho-escuro); margin-bottom:6px; }
+  .highlight-box p { font-size:.85rem; color:var(--texto-escuro); line-height:1.55; }
+  .highlight-box b { color:var(--vermelho-escuro); }
+  footer { background:var(--azul-escuro); color:rgba(255,255,255,.5); text-align:center; padding:16px; font-size:.72rem; letter-spacing:.03em; }
+  footer span { color:var(--vermelho); }
+  @media (max-width:640px){ header{padding:22px 20px calc(20px + env(safe-area-inset-top,0px));} .pill-grid{grid-template-columns:1fr;} .okr-grid{grid-template-columns:1fr;} .cycle{flex-direction:column;} .cyc-arrow{transform:rotate(90deg);} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>JOÃO MARCELO NASSER</h1>
+  <p class="role">Diretoria de Vice-Presidência · UNIFEI Júnior</p>
+  <div class="concept">Inspiração</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-page="p1">Pessoal</button>
+  <button class="tab-btn" data-page="p2">Minha Proposta</button>
+  <button class="tab-btn" data-page="p3">Qualidade</button>
+  <button class="tab-btn" data-page="p4">Gente &amp; Gestão</button>
+</nav>
+
+<main>
+
+<!-- PESSOAL -->
+<div class="page active" id="p1">
+  <div class="section-label">Trajetória</div>
+  <div class="timeline">
+    <div class="t-item">
+      <h4>Ordem DeMolay</h4>
+      <div class="t-tags"><span class="t-tag">Liderança</span><span class="t-tag">Oratória</span><span class="t-tag">Empatia</span><span class="t-tag">Gestão financeira</span><span class="t-tag">Organização</span></div>
+    </div>
+    <div class="t-item">
+      <h4>CAEPRO</h4>
+      <div class="t-tags"><span class="t-tag">Estratégia</span><span class="t-tag">Gestão</span><span class="t-tag">Eventos</span><span class="t-tag">Responsabilidade por resultados</span></div>
+    </div>
+    <div class="t-item">
+      <h4>UNIFEI Júnior — Gerente de Qualidade</h4>
+      <div class="t-tags"><span class="t-tag">Gestão tática</span><span class="t-tag">Dashboards</span><span class="t-tag">Mapeamento de processos</span><span class="t-tag">Melhoria contínua</span><span class="t-tag">Experiência do cliente</span><span class="t-tag">Análise de dados</span></div>
+    </div>
+    <div class="t-item now">
+      <h4>Candidatura à DIREX 2026</h4>
+      <div class="t-tags"><span class="t-tag">Qualidade + Gente &amp; Gestão</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Meu jeito de liderar</div>
+  <div class="pill-grid">
+    <div class="pill-box forte">
+      <div class="tt">Pontos fortes</div>
+      <ul><li>Comunicação</li><li>Escuta ativa</li><li>Empatia</li><li>Responsabilidade</li><li>Liderança</li></ul>
+    </div>
+    <div class="pill-box dev">
+      <div class="tt">Em desenvolvimento</div>
+      <ul><li>Procrastinação</li><li>Delegação e confiança nas pessoas</li><li>Ampliar a visão além da Qualidade</li><li>Equilibrar estratégia e execução</li></ul>
+    </div>
+  </div>
+
+  <div class="section-label">Por que DVP?</div>
+  <div class="card">
+    <p>Minha candidatura nasce da união de duas áreas que marcaram minha trajetória — <b>Qualidade</b>, onde pude construir e deixar minha marca, e <b>Gente &amp; Gestão</b>, onde entendi a dimensão do impacto que a EJ tem na vida das pessoas. Meu propósito é <b>inspiração</b>: não fazer as pessoas iguais a mim, mas mostrar que elas também podem se desenvolver, assumir responsabilidades e deixar sua própria marca na UNIFEI Júnior.</p>
+  </div>
+</div>
+
+<!-- PROPOSTA -->
+<div class="page" id="p2">
+  <div class="section-label">Um sistema integrado</div>
+  <p class="lead">Vejo a DVP como a conexão entre três pilares que só geram resultado quando funcionam como um mesmo sistema de gestão.</p>
+  <div class="cycle">
+    <div class="cyc-step"><div class="k">ESTRATÉGIA</div><div class="d">Planeja e direciona</div></div>
+    <div class="cyc-arrow">→</div>
+    <div class="cyc-step"><div class="k">PESSOAS</div><div class="d">Desenvolvem e executam</div></div>
+    <div class="cyc-arrow">→</div>
+    <div class="cyc-step"><div class="k">QUALIDADE</div><div class="d">Mede, aprende e melhora</div></div>
+  </div>
+  <div class="flow" style="justify-content:center;">
+    <span class="step">Estratégia</span><span class="arrow">→</span><span class="step">Pessoas</span><span class="arrow">→</span><span class="step">Execução</span><span class="arrow">→</span><span class="step">Resultados</span><span class="arrow">→</span><span class="step">Qualidade</span><span class="arrow">→</span><span class="step">Aprendizados</span><span class="arrow">→</span><span class="step">Estratégia</span>
+  </div>
+
+  <div class="section-label">Planejamento Estratégico da DVP</div>
+  <div class="card">
+    <p>O PE deve deixar de ser acompanhado só pela DIREX e passar a orientar as decisões de cada área — um ciclo contínuo de gestão, estruturado com <b>OKRs</b>.</p>
+    <div class="flow"><span class="step">Diagnóstico</span><span class="arrow">→</span><span class="step">Objetivos</span><span class="arrow">→</span><span class="step">KRs</span><span class="arrow">→</span><span class="step">Iniciativas</span><span class="arrow">→</span><span class="step">Check-ins</span><span class="arrow">→</span><span class="step">Dashboard</span><span class="arrow">→</span><span class="step">Revisão</span></div>
+    <div class="okr-grid">
+      <div class="okr-cell"><b>Objetivo</b>Prioridade da diretoria</div>
+      <div class="okr-cell"><b>Key Result</b>Indicador mensurável</div>
+      <div class="okr-cell"><b>Iniciativas</b>Ações para alcançar o KR</div>
+      <div class="okr-cell"><b>Responsável</b>Dono da entrega</div>
+      <div class="okr-cell"><b>Prazo</b>Definido por natureza do KR</div>
+      <div class="okr-cell"><b>Acompanhamento</b>Frequência sob medida</div>
+    </div>
+    <p style="margin-top:10px;">A frequência dos check-ins varia com a natureza de cada KR — não é reunião obrigatória por padrão, e sim proporcional ao ritmo de mudança do indicador.</p>
+  </div>
+
+  <div class="section-label">Papel da DIREX</div>
+  <div class="card">
+    <h3>Referência e coerência</h3>
+    <p>Ser diretor é liderar pelo exemplo: coerência entre o que se cobra e o que se pratica, comunicação próxima entre diretorias e decisões construídas em conjunto — para que a estratégia se traduza em ações reais nas áreas.</p>
+  </div>
+
+  <div class="section-label">Interface com outras diretorias</div>
+  <div class="accordion"><div class="acc-head">Capacitação e canais claros</div><div class="acc-body">
+    <p>Capacitação inicial mostrando o valor prático da DVP para cada diretoria — Qualidade e G&amp;G apresentadas como apoio, não cobrança. Canais definidos: problemas de processo vão para Qualidade, problemas de pessoas vão para G&amp;G.</p>
+  </div></div>
+  <div class="accordion"><div class="acc-head">Responsabilidade compartilhada</div><div class="acc-body">
+    <p>Quando uma diretoria traz um problema, a DVP constrói a solução junto — não entrega pronta. "A DVP e a área construíram e são responsáveis pelo resultado."</p>
+    <div class="indicator-tags"><span class="ind-tag">Adesão às ferramentas</span><span class="ind-tag">Tempo de tratamento</span><span class="ind-tag">Problemas resolvidos</span><span class="ind-tag">Percepção de apoio</span></div>
+  </div></div>
+</div>
+
+<!-- QUALIDADE -->
+<div class="page" id="p3">
+  <div class="section-label">Metodologias que seguem na gestão</div>
+  <div class="pill-grid">
+    <div class="pill-box forte"><div class="tt">PDCA</div><ul><li>Base dos planos de ação de Melhoria Contínua</li></ul></div>
+    <div class="pill-box forte" style="background:var(--azul-pale);"><div class="tt" style="color:var(--azul);">BPMN</div><ul><li>Mapeamento de processos vivo, gestão do conhecimento</li></ul></div>
+  </div>
+
+  <div class="section-label">O gargalo real: implementação</div>
+  <div class="card">
+    <p>O Hackathon de Melhoria Contínua teve 80% de promotores no NPS e CSAT de 4,6 — mas nenhuma solução avançou para implementação, e a adesão ao formulário no dia a dia seguiu baixa. O desafio não é gerar ideias, é executá-las.</p>
+    <div class="highlight-box">
+      <div class="hb-tag">O gargalo real</div>
+      <p>Por trás da baixa implementação está a <b>falta de valor que as outras áreas enxergam na Qualidade</b> — enquanto for vista como cobrança e preenchimento, a adesão não muda. Por isso o ponto de partida da minha gestão é a <b>capacitação no período trainee</b>: mostrar, na prática, como a Qualidade contribui para cada diretoria e quais resultados ela gera, para que a área passe a ser percebida como apoio desde a entrada do membro na EJ.</p>
+    </div>
+  </div>
+
+  <div class="section-label">Ciclo de Gestão de Melhorias</div>
+  <div class="card">
+    <div class="flow"><span class="step">Capacitação no trainee</span><span class="arrow">→</span><span class="step">Proposta (Hackathon/Melhoria Contínua)</span><span class="arrow">→</span><span class="step">Responsável + prazo</span><span class="arrow">→</span><span class="step">PDCA até implementação</span><span class="arrow">→</span><span class="step">Devolutiva ao time</span></div>
+    <div class="indicator-tags">
+      <span class="ind-tag">Taxa de adesão ao formulário</span>
+      <span class="ind-tag">% de soluções implementadas</span>
+      <span class="ind-tag">Percepção de valor da Qualidade</span>
+    </div>
+  </div>
+
+  <div class="section-label">Interface com outras áreas</div>
+  <div class="accordion"><div class="acc-head">Projetos — rotina, não cobrança</div><div class="acc-body">
+    <p>Atualizações do ClickUp e da planilha de conclusão viram parte da rotina de Projetos, com lembretes automáticos via Google Agenda — sem depender de cobrança manual da Qualidade.</p>
+  </div></div>
+  <div class="accordion"><div class="acc-head">Comercial &amp; Marketing — dados que viram ação</div><div class="acc-body">
+    <p>Dados de leads perdidos, métricas de projetos e experiência do cliente cruzados para apoiar a prospecção; dados de alcance e engajamento orientam decisões de conteúdo do Marketing. A Qualidade conecta, as áreas decidem.</p>
+    <div class="indicator-tags"><span class="ind-tag">Retrabalhos por falha de interface</span><span class="ind-tag">Prazos de atualização cumpridos</span><span class="ind-tag">Motivos de perda de leads</span></div>
+  </div></div>
+</div>
+
+<!-- GENTE & GESTÃO -->
+<div class="page" id="p4">
+  <div class="section-label">Calendário anual de acompanhamento</div>
+  <div class="cal-wrap">
+    <table class="cal">
+      <thead><tr><th>Mês</th><th>Semana</th><th>Ação</th><th>Responsável</th><th>Foco</th></tr></thead>
+      <tbody>
+        <tr><td>Março</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">G&amp;G</td><td>Como a pessoa está + adaptação + expectativas</td></tr>
+        <tr><td>Abril</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">Gerência</td><td>Desempenho + função + entregas</td></tr>
+        <tr><td>Abril</td><td>3ª/4ª sem.</td><td>PDI 1</td><td class="resp">G&amp;G + Gerência</td><td>Definição dos objetivos de desenvolvimento</td></tr>
+        <tr><td>Maio</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">G&amp;G</td><td>Acompanhamento pessoal</td></tr>
+        <tr><td>Junho</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">Gerência</td><td>Acompanhamento de desempenho</td></tr>
+        <tr class="recesso"><td>Julho</td><td>—</td><td>Recesso</td><td>—</td><td>—</td></tr>
+        <tr><td>Agosto</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">G&amp;G</td><td>Retorno + motivação + retomada</td></tr>
+        <tr><td>Setembro</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">Gerência</td><td>Desempenho + evolução</td></tr>
+        <tr><td>Setembro</td><td>2ª/3ª sem.</td><td>PDI 2</td><td class="resp">G&amp;G + Gerência</td><td>Novo ciclo de desenvolvimento</td></tr>
+        <tr><td>Outubro</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">G&amp;G</td><td>Acompanhamento pessoal</td></tr>
+        <tr><td>Novembro</td><td>1ª/2ª sem.</td><td>One a One</td><td class="resp">Gerência</td><td>Fechamento/evolução do ano</td></tr>
+        <tr class="fecho"><td>Dezembro</td><td>—</td><td>Avaliação/fechamento</td><td class="resp">G&amp;G + Gerência</td><td>Retrospectiva + próximos passos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-label">One a One's: dividir sem perder proximidade</div>
+  <div class="card">
+    <p>G&amp;G segue com as conversas de caráter pessoal, acadêmico e de bem-estar. Os <b>gerentes</b> assumem o acompanhamento da experiência dentro da EJ — desempenho, relacionamento, desenvolvimento — com capacitação prévia em escuta ativa e feedback.</p>
+    <div class="flow"><span class="step">Periodicidade bimestral</span><span class="arrow">→</span><span class="step">Registro dos encaminhamentos</span><span class="arrow">→</span><span class="step">Alimenta o PDI</span></div>
+    <div class="indicator-tags"><span class="ind-tag">% de One a One's realizadas</span><span class="ind-tag">Adesão das lideranças</span><span class="ind-tag">Evolução dos PDIs</span></div>
+  </div>
+
+  <div class="section-label">PDI, Reconhecimento e Gamificação</div>
+  <div class="pill-grid">
+    <div class="pill-box forte"><div class="tt">PDI desenvolve</div><ul><li>Construído a partir das conversas, não é documento parado</li></ul></div>
+    <div class="pill-box dev"><div class="tt">Reconhecimento valoriza</div><ul><li>Gerentes reconhecem, DVP acompanha a consistência</li></ul></div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <h3>Gamificação engaja</h3>
+    <p>Usada de forma estratégica e pontual — imersões, eventos, ações internas — com objetivo, período e regras definidos antes, e avaliação do efeito depois para decidir repetir ou adaptar.</p>
+  </div>
+
+  <div class="section-label">Jornada: narrativa coletiva</div>
+  <div class="card">
+    <p>Uma persona acompanha sua evolução dentro da UNIFEI Júnior, contada em episódios de Reels protagonizados por diferentes consultores em revezamento.</p>
+    <div class="flow"><span class="step">G&amp;G define narrativa</span><span class="arrow">→</span><span class="step">Marketing apoia roteiro/gravação</span><span class="arrow">→</span><span class="step">Consultores protagonizam</span></div>
+    <div class="indicator-tags"><span class="ind-tag">Consultores envolvidos</span><span class="ind-tag">Alcance e engajamento</span><span class="ind-tag">Identificação com a narrativa</span></div>
+  </div>
+</div>
+
+</main>
+
+<footer>Candidatura de <span>João Marcelo Nasser</span> · Diretoria de Vice-Presidência · UNIFEI Júnior · Setembro 2026</footer>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.page).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  document.querySelectorAll('.accordion').forEach(acc=>{
+    acc.querySelector('.acc-head').addEventListener('click',()=>acc.classList.toggle('open'));
+  });
+</script>
+</body>
+</html>
